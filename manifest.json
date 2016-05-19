@@ -1,0 +1,16 @@
+{
+  "name": "ecmalinks",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "add more links to the ecma262 spec webpage: https://tc39.github.io/ecma262/",
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "ecmalinks.js"
+      ]
+    }
+  ]
+}
