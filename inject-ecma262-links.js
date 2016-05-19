@@ -14,7 +14,7 @@ function init() {
   } catch (e) { return; }
 
   // wait for other load handlers to run first
-  setTimeout(ecmalinksGo, 0);
+  setTimeout(injectEcma262LinksMain, 0);
 }
 
 var counter = 0;
@@ -22,7 +22,7 @@ function nextCounter() {
   return counter++;
 }
 
-function ecmalinksGo() {
+function injectEcma262LinksMain() {
   var startTime = new Date().getTime();
   // define functions
   var h1List = document.getElementsByTagName("h1");
@@ -60,7 +60,7 @@ function ecmalinksGo() {
   });
 
   var totalTime = new Date().getTime() - startTime;
-  //console.log("ecmalinks effort took ms:", totalTime);
+  //console.log("inject-ecma262-links setup took ms:", totalTime);
 }
 
 function putSemanticFunction(headingName, h1Node) {

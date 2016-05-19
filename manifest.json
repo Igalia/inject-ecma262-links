@@ -1,5 +1,5 @@
 {
-  "name": "ecmalinks",
+  "name": "inject-ecma262-links",
   "version": "0.0.1",
   "manifest_version": 2,
   "description": "add more links to the ecma262 spec webpage: https://tc39.github.io/ecma262/",
@@ -9,7 +9,7 @@
         "<all_urls>"
       ],
       "js": [
-        "ecmalinks.js"
+        "inject-ecma262-links.js"
       ]
     }
   ]
