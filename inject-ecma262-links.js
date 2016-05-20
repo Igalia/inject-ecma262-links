@@ -36,6 +36,11 @@ function injectEcma262LinksMain() {
     if (headingName == null) continue;
     putSemanticFunction(headingName, h1Node);
   }
+  for (var k in semanticFunctions) {
+    semanticFunctions[k].sort(function(a, b) {
+      return operatorCompare(a.ntName, b.ntName);
+    });
+  }
 
   var allFunctionNames = Object.keys(semanticFunctions);
   allFunctionNames.push(EVALUATING);
@@ -169,6 +174,9 @@ function assert(b) {
   if (!b) {
     throw new Error();
   }
+}
+function operatorCompare(a, b) {
+  return a < b ? -1 : b < a ? 1 : 0;
 }
 
 // UI
