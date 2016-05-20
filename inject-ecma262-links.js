@@ -22,6 +22,10 @@ function nextCounter() {
   return counter++;
 }
 
+// "evaluating" is how the spec refers to "Evaluation"
+var EVALUATING = "evaluating";
+var EVALUATION = "Evaluation";
+
 function injectEcma262LinksMain() {
   var startTime = new Date().getTime();
   // define functions
@@ -33,7 +37,9 @@ function injectEcma262LinksMain() {
     putSemanticFunction(headingName, h1Node);
   }
 
-  var keywordPattern = new RegExp("\\b(?:" + Object.keys(semanticFunctions).join("|") + ")\\b", "g");
+  var allFunctionNames = Object.keys(semanticFunctions);
+  allFunctionNames.push(EVALUATING);
+  var keywordPattern = new RegExp("\\b(?:" + allFunctionNames.join("|") + ")\\b", "g");
 
   // link usage to function definitions
   forEachTextNode(document.body, ["a", "h1"], function(textNode) {
@@ -199,6 +205,7 @@ function setActiveLinkNode(linkNode) {
   activeLinkNode = linkNode;
 
   var functionName = linkNode.textContent;
+  if (functionName === EVALUATING) functionName = EVALUATION;
   var functionList = semanticFunctions[functionName];
 
   var overloadGroups = [];
