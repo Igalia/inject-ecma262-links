@@ -70,6 +70,17 @@ function injectEcma262LinksMain() {
     }
   });
 
+  // Hack: opening a link in a new tab tries to scroll to the element id before the id has been set.
+  // Manually scroll the window if we were supposed to have scrolled one of our links into view.
+  var ecmalinksFragmentId = (/#(ecmalinks-.*)/.exec(location.hash) || [])[1];
+  if (ecmalinksFragmentId != null) {
+    // only do this if a new tab is still sitting at the top of the page.
+    // otherwise, refreshing the page will snap this element back into focus.
+    if ((document.scrollingElement || document.body).scrollTop === 0) {
+      document.getElementById(ecmalinksFragmentId).scrollIntoView();
+    }
+  }
+
   var totalTime = new Date().getTime() - startTime;
   //console.log("inject-ecma262-links setup took ms:", totalTime);
 }
